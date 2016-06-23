@@ -1,12 +1,13 @@
 var lock = new Auth0Lock('YOUR-AUTH0-CLIENT-ID', 'YOUR-AUTH0-DOMAIN.auth0.com');
 
 $(document).ready(function(){
-  getUser();
+  updateAuthenticationStatus();
+  loadAdmin();
 });
 function logout(){
   localStorage.removeItem('profile');
   localStorage.removeItem('token');
-  getUser();
+  updateAuthenticationStatus();
 };
 function login(){
   lock.show(function(err, profile, id_token) {
@@ -15,11 +16,11 @@ function login(){
     }
     localStorage.setItem('profile', JSON.stringify(profile));
     localStorage.setItem('token', id_token);
-    getUser();
+    updateAuthenticationStatus();
   });
 };
 
-function getUser(){
+function updateAuthenticationStatus(){
   $('#user').empty();
   $('#login').empty();
   var user = localStorage.getItem('profile');
@@ -33,10 +34,35 @@ function getUser(){
   }
 }
 
+function loadAdmin(){
+  if(window.location.pathname == '/admin/'){
+    if(localStorage.getItem('token')){
+      $.ajax({
+        type : 'GET',
+        url : 'https://webtask.it.auth0.com/api/run/wt-kukicadnan-gmail_com-0/newsletter-complex/subscribers?webtask_no_cache=1',
+        headers : {
+          Authorization : 'Bearer ' + localStorage.getItem('token')
+        }
+      }).done(function(data) {
+        for(var i = 0; i < data.length; i++){
+          $('#subscribers').append('<h4>' + data[i] + '</h4>');
+        }
+      });
+    } else {
+      window.location = '/';
+    }
+  }
+}
+
 $('#newsletter').submit(function(e){
   $.ajax({
-    type : 'GET',
-    url : 'https://webtask.it.auth0.com/api/run/{YOUR-WEBTASK-ACCOUNT}/newsletter?email=' + $('#email').val()
+    type : 'POST',
+    url : 'https://webtask.it.auth0.com/api/run/wt-kukicadnan-gmail_com-0/newsletter-complex/subscribe?webtask_no_cache=1',
+    data : {email : $('#email').val()},
+    dataType    : 'json',
+    headers : {
+      Authorization : 'Bearer ' + localStorage.getItem('token')
+    }
   }).done(function(data) {
     if(data.statusCode == 200){
       $('#newsletter').hide();
@@ -52,7 +78,7 @@ $('#newsletter').submit(function(e){
 $('#tip').submit(function(e){
   $.ajax({
     type : 'POST',
-    url : 'https://webtask.it.auth0.com/api/run/{YOUR-WEBTASK-ACCOUNT}/tips?access_token=' + localStorage.getItem('token'),
+    url : 'https://webtask.it.auth0.com/api/run/wt-kukicadnan-gmail_com-0/tips?access_token=' + localStorage.getItem('token'),
     data : {message : $('#message').val()},
     dataType    : 'json'
   }).done(function(data) {
