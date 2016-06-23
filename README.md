@@ -1,7 +1,7 @@
 # Serverless Stories
 Serverless Stories is a static blog that is enhanced with Webtasks. It is a sample application showing how you can easily build serverless applications with [Webtask.io](https://webtask.io). Check out the blog post [here]().
 
-![FireTeller](https://cdn.auth0.com/blog/webtask/homepage.png)
+![Serverless Stories](https://cdn.auth0.com/blog/webtask/app.png)
 
 ## Running the App
 
@@ -15,8 +15,7 @@ Serverless Stories is a static blog that is enhanced with Webtasks. It is a samp
 1. Install the Webtask CLI by running `npm install wt-cli -g`
 2. Navigate to the `webtasks` directory
 3. Run `wt init` to create your Webtask account
-4. Run `wt create newsletter.js` to deploy the Newsletter Webtask
-5. Run `wt create tips.js -s AUTH0_CLIENT_ID=YOUR_AUTH0_CLIENT_ID -s AUTH0_CLIENT_SECRET=YOUR_AUTHO_CLIENT_SECRET -s AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN.auth0.com` to deploy and setup the Tips Webtask (Note: The Tips Webtask calls the Twilio API, so you will need to get keys from [Twilio](https://twilio.com))
+4. Run `wt create newsletter.js -s AUTH0_CLIENT_ID=YOUR_AUTH0_CLIENT_ID -s AUTH0_CLIENT_SECRET=YOUR_AUTHO_CLIENT_SECRET -s AUTH0_DOMAIN=YOUR_AUTH0_DOMAIN.auth0.com` to deploy the newsletter Webtask
 
 ## What is Auth0?
 
