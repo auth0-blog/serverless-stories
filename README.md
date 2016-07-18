@@ -1,5 +1,5 @@
 # Serverless Stories
-Serverless Stories is a static blog that is enhanced with Webtasks. It is a sample application showing how you can easily build serverless applications with [Webtask.io](https://webtask.io). Check out the blog post [here]().
+Serverless Stories is a static blog that is enhanced with Webtasks. It is a sample application showing how you can easily build serverless applications with [Webtask.io](https://webtask.io). Check out the blog post [here](https://auth0.com/blog/2016/06/28/building-serverless-apps-with-webtask/).
 
 ![Serverless Stories](https://cdn.auth0.com/blog/webtask/app.png)
 
