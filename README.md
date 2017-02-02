@@ -6,7 +6,7 @@ Serverless Stories is a static blog that is enhanced with Webtasks. It is a samp
 ## Running the App
 
 1. Clone the repo
-2. Install the http-server by running `npm intall http-server -g` (you will need Node and NPM)
+2. Install the http-server by running `npm install http-server -g` (you will need Node and NPM)
 3. Run `http-server` and navigate to `localhost:8080` to see the blog.
 4. [Sign up](https://auth0.com/signup) for an Auth0 account and update the `app.js` file with your credentials.
 
